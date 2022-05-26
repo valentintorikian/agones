@@ -872,7 +872,7 @@ This surfaces while running `make gcloud-auth-cluster`. The solution is to run `
 
 Run `make uninstall` then run `make install` again.
 
-#### I want to use pprof to profile the controller.
+#### I want to use pprof to profile the controller, allocator, sdk, or ping service.
 
 Run `make build-images GO_BUILD_TAGS=profile` and this will build images with [pprof](https://golang.org/pkg/net/http/pprof/)
 enabled in the controller, which you can then push and install on your cluster.
