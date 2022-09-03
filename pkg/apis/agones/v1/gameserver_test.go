@@ -1162,6 +1162,7 @@ func TestGameServerPodNoErrors(t *testing.T) {
 	assert.Equal(t, fixture.Spec.Ports[0].HostPort, pod.Spec.Containers[0].Ports[0].HostPort)
 	assert.Equal(t, fixture.Spec.Ports[0].ContainerPort, pod.Spec.Containers[0].Ports[0].ContainerPort)
 	assert.Equal(t, corev1.Protocol("UDP"), pod.Spec.Containers[0].Ports[0].Protocol)
+	assert.Equal(t, fixture.Name, pod.Spec.Hostname)
 	assert.True(t, metav1.IsControlledBy(pod, fixture))
 }
 
@@ -1207,6 +1208,7 @@ func TestGameServerPodWithSidecarNoErrors(t *testing.T) {
 	assert.Equal(t, "other-agones-sdk", pod.Spec.ServiceAccountName)
 	assert.Equal(t, "sidecar", pod.Spec.Containers[0].Name)
 	assert.Equal(t, "container", pod.Spec.Containers[1].Name)
+	assert.Equal(t, fixture.Name, pod.Spec.Hostname)
 	assert.True(t, metav1.IsControlledBy(pod, fixture))
 }
 
@@ -1240,6 +1242,7 @@ func TestGameServerPodWithMultiplePortAllocations(t *testing.T) {
 	assert.Equal(t, fixture.Spec.Ports[1].HostPort, pod.Spec.Containers[1].Ports[0].HostPort)
 	assert.Equal(t, fixture.Spec.Ports[1].ContainerPort, pod.Spec.Containers[1].Ports[0].ContainerPort)
 	assert.Equal(t, *fixture.Spec.Ports[1].Container, pod.Spec.Containers[1].Name)
+	assert.Equal(t, fixture.Name, pod.Spec.Hostname)
 	assert.Equal(t, corev1.Protocol("UDP"), pod.Spec.Containers[1].Ports[0].Protocol)
 }
 

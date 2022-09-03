@@ -611,6 +611,7 @@ func (gs *GameServer) Pod(sidecars ...corev1.Container) (*corev1.Pod, error) {
 	containers = append(containers, sidecars...)
 	containers = append(containers, pod.Spec.Containers...)
 	pod.Spec.Containers = containers
+	pod.Spec.Hostname = gs.Name
 
 	gs.podScheduling(pod)
 
